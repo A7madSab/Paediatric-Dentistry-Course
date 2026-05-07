@@ -1,0 +1,47 @@
+create an react application SPA containing a year's calendar for the following tasks, group, enable toggling dates and period, when i click on a date, i want to view dates and details and explanation of the selected data, with the info regarding it. make it so the anyone with access to this application edit this calendar, make it using react and redux for state management and persist the state 
+
+im create a schedule for a course im giving, i want to have a calendar where i can share with anyone to share the schedule of the course, i need to be able to edit these courses as i go
+
+start date: 1/9/2026
+end date: 1/9/2028
+
+the course is 2 years long
+
+1st year
+	5 months (20 weeks) (1 session per week) (preclinical period)
+		- Pulpotomy, Puplpectomy  on teeth (3 Sessions)
+		- 14 session (content yet to be decided) 
+		- Rotary endo on teeth (1 Sessions)
+		- photography (1 Sessions)
+		- isolation (1 Sessions)
+
+	1 month vacation (Ramadan) 	
+	
+	5 months (20 weeks) (clinical period)
+		- 15 days period, once per week for the first 4 months 
+			- in these 15 days the student must cover 
+				- Extraction cases
+				- Pulpotomy cases
+				- Puplpectomy cases
+				- Stainless steel cases
+				- Space Maintainers 
+				- Simple composite 
+				- Fissure Sealant and PRR
+				- Minimally invasive 
+				- Strip Crown
+		- 4 cases per day per candidate
+		
+
+	1 month vacation 	
+
+
+2nd year
+	5 months (20 weeks) - clinical 
+		- MTA Pulpotomy 
+		- Revascularization 
+		- Interceptive
+		- SSC Permanent
+		- Trauma Management 
+		- ICON
+		
+

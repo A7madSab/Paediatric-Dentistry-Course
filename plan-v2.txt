@@ -1,0 +1,167 @@
+DENTAL COURSE CALENDAR — PLAN v2
+=================================
+
+OVERVIEW
+--------
+A React SPA calendar covering a 2-year dental course (Sep 1, 2026 → Sep 1, 2028).
+Anyone with access can view and edit the schedule. State persists in localStorage
+via Redux Persist. No backend required.
+
+TECH STACK
+----------
+- Vite + React 18 + TypeScript (strict mode)
+- Redux Toolkit + redux-persist (localStorage)
+- Tailwind CSS
+- date-fns (date math)
+- @dnd-kit/core (drag-and-drop to move sessions)
+- uuid + @types/uuid (session IDs)
+- ESLint + Prettier (code quality)
+
+BEST PRACTICES
+--------------
+- Strict TypeScript throughout (no `any`)
+- Typed Redux slices with RTK (createSlice, PayloadAction)
+- Custom hooks for all store access (useAppDispatch, useAppSelector)
+- Feature-based folder structure
+- All components typed with React.FC or explicit props interfaces
+- Utility functions are pure and fully typed
+- Constants/enums for phase types and colors
+
+COURSE TIMELINE
+---------------
+
+YEAR 1 (Sep 1, 2026 – Aug 31, 2027)
+  Phase 1 — Preclinical   Sep 1, 2026 → Jan 31, 2027  (5 months / 20 weeks)
+    · 1 session per week (Tuesdays by default, moveable)
+    · Sessions:
+        - Pulpotomy & Pulpectomy on teeth  ×3
+        - [Content TBD]                    ×14
+        - Rotary Endo on teeth             ×1
+        - Photography                      ×1
+        - Isolation                        ×1
+        Total = 20 sessions
+
+  Vacation (Ramadan)       Feb 1, 2027 → Feb 28, 2027  (1 month)
+
+  Phase 2 — Clinical       Mar 1, 2027 → Jul 31, 2027  (5 months)
+    · First 4 months: 1 session/week (≈16 sessions)
+        Required cases per session day (4 cases/candidate):
+          - Extraction cases
+          - Pulpotomy cases
+          - Pulpectomy cases
+          - Stainless Steel cases
+          - Space Maintainers
+          - Simple Composite
+          - Fissure Sealant & PRR
+          - Minimally Invasive
+          - Strip Crown
+    · Month 5 (Jul 2027): Unscheduled / TBD
+
+  Vacation (Summer)        Aug 1, 2027 → Aug 31, 2027  (1 month)
+
+
+YEAR 2 (Sep 1, 2027 – Sep 1, 2028)
+  Phase 3 — Clinical       Sep 1, 2027 → Jan 31, 2028  (5 months / 20 weeks)
+    · 1 session/week (same structure as Year 1 clinical)
+    · Topics:
+        - MTA Pulpotomy
+        - Revascularization
+        - Interceptive
+        - SSC Permanent
+        - Trauma Management
+        - ICON
+
+  Vacation                 Feb 1, 2028 → Feb 29, 2028  (1 month)
+
+  Remaining (TBD)          Mar 1, 2028 → Sep 1, 2028   (unscheduled)
+
+
+FEATURES
+--------
+1. Calendar Views
+   - Two-year overview (color-coded by phase)
+   - Monthly detail view
+   - Navigation between months/years
+
+2. Session Display
+   - Color-coded cells: preclinical (blue), clinical (green), vacation (amber), TBD (gray)
+   - Session chips on day cells showing topic name
+
+3. Session Modal (click any day)
+   - View: date, phase, topic, notes, cases list
+   - Edit: change title/notes/type
+   - Delete session
+
+4. Add Session
+   - Click empty day → open "Add Session" modal
+   - Set title, type, notes
+
+5. Drag & Drop
+   - Drag a session chip to another day to move it
+
+6. Export / Import
+   - Export button → downloads a `.json` file with all sessions + schema version
+   - Import button → file picker reads JSON, shows confirmation dialog:
+       · "Replace all sessions" — wipes current and loads imported
+       · "Merge" — imported sessions are added; conflicts kept as-is
+   - Exported file is versioned (schemaVersion field) for future compatibility
+
+7. Sidebar Legend
+   - Phase legend with colors
+   - Quick-jump to phases
+
+DATA MODEL (Redux)
+------------------
+sessions: {
+  [id]: {
+    id: string (uuid),
+    date: "YYYY-MM-DD",
+    title: string,
+    phase: "preclinical" | "clinical_y1" | "clinical_y2" | "vacation" | "tbd",
+    notes: string,
+    cases: string[],
+    color: string   // override per session (optional)
+  }
+}
+
+ui: {
+  currentYear: number,       // 2026 | 2027 | 2028
+  currentMonth: number,      // 0-11
+  selectedDate: string|null, // "YYYY-MM-DD"
+  viewMode: "month" | "year"
+}
+
+COMPONENT TREE
+--------------
+App
+├── Header (title, view toggle, year/month nav)
+├── Sidebar (legend, phase quick-nav)
+├── CalendarView
+│   ├── YearView (12 mini-month grids)
+│   └── MonthView
+│       └── DayCell (×42) — shows session chips
+└── SessionModal (add / view-edit / delete)
+
+FILE STRUCTURE
+--------------
+src/
+  components/
+    Header.jsx
+    Sidebar.jsx
+    calendar/
+      CalendarView.jsx
+      YearView.jsx
+      MonthView.jsx
+      DayCell.jsx
+    modal/
+      SessionModal.jsx
+  store/
+    index.js
+    sessionsSlice.js
+    uiSlice.js
+  utils/
+    dateUtils.js
+    initialData.js    ← seeds the pre-built schedule
+  App.jsx
+  main.jsx
+  index.css
