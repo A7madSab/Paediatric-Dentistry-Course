@@ -111,19 +111,19 @@ export default function SessionModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4"
       style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}
       onClick={() => dispatch(closeModal())}
     >
       <div
-        className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl"
+        className="max-h-[85vh] w-full overflow-y-auto rounded-t-2xl bg-white shadow-2xl sm:max-h-[90vh] sm:max-w-lg sm:rounded-2xl"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className={`rounded-t-2xl px-6 py-4 text-white ${PHASE_COLORS[phase]}`}>
+        <div className={`rounded-t-2xl px-4 py-3 text-white sm:px-6 sm:py-4 ${PHASE_COLORS[phase]}`}>
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-sm font-medium opacity-80">{formatDisplayDate(date)}</p>
-              <h2 className="mt-0.5 text-lg font-bold">
+              <p className="text-xs font-medium opacity-80 sm:text-sm">{formatDisplayDate(date)}</p>
+              <h2 className="mt-0.5 text-base font-bold sm:text-lg">
                 {readOnly ? existingSession?.title : isEditing ? 'Edit Session' : 'Add Session'}
               </h2>
             </div>

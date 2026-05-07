@@ -11,12 +11,12 @@ export default function MonthView() {
   const referenceMonth = new Date(currentYear, currentMonth, 1);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm md:rounded-xl">
       <div className="grid grid-cols-7 border-b border-slate-200">
         {WEEKDAYS.map((day) => (
           <div
             key={day}
-            className="py-2 text-center text-xs font-semibold uppercase tracking-wider text-slate-500"
+            className="py-1 text-center text-[10px] font-semibold uppercase tracking-wider text-slate-500 md:py-2 md:text-xs"
           >
             {day}
           </div>

@@ -10,7 +10,7 @@ export default function App() {
       <Header />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-auto p-6">
+        <main className="flex-1 overflow-auto p-2 sm:p-4 md:p-6">
           <CalendarView />
         </main>
       </div>

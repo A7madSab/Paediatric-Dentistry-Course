@@ -28,6 +28,7 @@ export interface UIState {
   selectedDate: string | null;
   modalOpen: boolean;
   importExportOpen: boolean;
+  sidebarOpen: boolean;
 }
 
 export interface ExportPayload {

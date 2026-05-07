@@ -9,6 +9,7 @@ const initialState: UIState = {
   selectedDate: null,
   modalOpen: false,
   importExportOpen: false,
+  sidebarOpen: false,
 };
 
 const uiSlice = createSlice({
@@ -43,6 +44,12 @@ const uiSlice = createSlice({
     closeImportExport(state) {
       state.importExportOpen = false;
     },
+    toggleSidebar(state) {
+      state.sidebarOpen = !state.sidebarOpen;
+    },
+    closeSidebar(state) {
+      state.sidebarOpen = false;
+    },
   },
 });
 
@@ -54,6 +61,8 @@ export const {
   closeModal,
   openImportExport,
   closeImportExport,
+  toggleSidebar,
+  closeSidebar,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

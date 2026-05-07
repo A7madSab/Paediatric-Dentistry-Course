@@ -27,14 +27,14 @@ export default function DayCell({ date, isCurrentMonth }: Props) {
       ref={setNodeRef}
       onClick={handleClick}
       className={[
-        'flex min-h-[80px] cursor-pointer flex-col gap-0.5 border border-slate-100 p-1.5 transition-colors',
+        'flex min-h-[52px] cursor-pointer flex-col gap-0.5 border border-slate-100 p-0.5 transition-colors md:min-h-[80px] md:p-1.5',
         isCurrentMonth ? 'bg-white hover:bg-slate-50' : 'bg-slate-50/50 hover:bg-slate-100/50',
         isOver ? 'ring-2 ring-blue-400 ring-inset bg-blue-50' : '',
       ].join(' ')}
     >
       <span
         className={[
-          'flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium',
+          'flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-medium md:h-6 md:w-6 md:text-xs',
           today
             ? 'bg-blue-600 font-bold text-white'
             : isCurrentMonth
@@ -44,7 +44,7 @@ export default function DayCell({ date, isCurrentMonth }: Props) {
       >
         {date.getDate()}
       </span>
-      <div className="flex flex-col gap-0.5 overflow-hidden">
+      <div className="hidden flex-col gap-0.5 overflow-hidden sm:flex">
         {sessions.slice(0, 3).map((session) => (
           <SessionChip key={session.id} session={session} />
         ))}
@@ -52,6 +52,11 @@ export default function DayCell({ date, isCurrentMonth }: Props) {
           <span className="pl-1 text-[9px] text-slate-400">+{sessions.length - 3} more</span>
         )}
       </div>
+      {sessions.length > 0 && (
+        <div className="flex gap-0.5 sm:hidden">
+          <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+        </div>
+      )}
     </div>
   );
 }
