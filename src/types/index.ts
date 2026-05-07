@@ -9,6 +9,8 @@ export type PhaseType =
 
 export type ViewMode = "month" | "year"
 
+export type PageRoute = "calendar" | "overview"
+
 export interface Session {
   id: string
   date: string // "YYYY-MM-DD"
@@ -24,6 +26,7 @@ export interface SessionsState {
 
 export interface UIState {
   viewMode: ViewMode
+  page: PageRoute
   currentYear: number
   currentMonth: number // 0-indexed
   selectedSessionId: string | null

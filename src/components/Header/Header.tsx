@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks"
 import {
   navigate,
   openImportExport,
+  setPage,
   setViewMode,
   toggleSidebar
 } from "../../store/uiSlice"
@@ -60,7 +61,7 @@ function MenuIcon() {
 
 export default function Header() {
   const dispatch = useAppDispatch()
-  const { viewMode, currentYear, currentMonth } = useAppSelector(
+  const { viewMode, currentYear, currentMonth, page } = useAppSelector(
     state => state.ui
   )
 
@@ -154,6 +155,29 @@ export default function Header() {
 
       {/* Bottom row on mobile: nav controls */}
       <div className="flex items-center justify-between gap-2 md:justify-end">
+        <div className="flex overflow-hidden rounded-lg border border-slate-200 text-xs md:text-sm">
+          <button
+            onClick={() => dispatch(setPage("calendar"))}
+            className={`px-2.5 py-1 font-medium transition-colors md:px-3 md:py-1.5 ${
+              page === "calendar"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-slate-600 hover:bg-slate-50"
+            }`}
+          >
+            Calendar
+          </button>
+          <button
+            onClick={() => dispatch(setPage("overview"))}
+            className={`border-l border-slate-200 px-2.5 py-1 font-medium transition-colors md:px-3 md:py-1.5 ${
+              page === "overview"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-slate-600 hover:bg-slate-50"
+            }`}
+          >
+            Overview
+          </button>
+        </div>
+
         <div className="flex overflow-hidden rounded-lg border border-slate-200 text-xs md:text-sm">
           <button
             onClick={() => dispatch(setViewMode("month"))}

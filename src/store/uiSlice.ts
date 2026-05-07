@@ -1,10 +1,11 @@
 /** @format */
 
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
-import type { UIState, ViewMode } from "../types"
+import type { PageRoute, UIState, ViewMode } from "../types"
 
 const initialState: UIState = {
   viewMode: "month",
+  page: "calendar",
   currentYear: 2026,
   currentMonth: 8,
   selectedSessionId: null,
@@ -51,6 +52,9 @@ const uiSlice = createSlice({
     },
     closeSidebar(state) {
       state.sidebarOpen = false
+    },
+    setPage(state, action: PayloadAction<PageRoute>) {
+      state.page = action.payload
     }
   }
 })
@@ -64,7 +68,8 @@ export const {
   openImportExport,
   closeImportExport,
   toggleSidebar,
-  closeSidebar
+  closeSidebar,
+  setPage
 } = uiSlice.actions
 
 export default uiSlice.reducer

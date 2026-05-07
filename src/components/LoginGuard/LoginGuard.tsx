@@ -1,3 +1,5 @@
+/** @format */
+
 import { useState, type FormEvent } from "react"
 
 const CORRECT_PASSWORD = "Iamadmin!"
@@ -38,7 +40,9 @@ export default function LoginGuard({ onSuccess }: Props) {
       >
         {/* Icon with gradient ring */}
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 shadow-inner">
-          <span className="text-4xl" aria-hidden="true">🦷</span>
+          <span className="text-4xl" aria-hidden="true">
+            🦷
+          </span>
         </div>
 
         <div className="mb-8 text-center">
