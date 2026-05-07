@@ -1,6 +1,13 @@
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { navigate, openImportExport, setViewMode, toggleSidebar } from '../../store/uiSlice';
-import { formatMonthYear } from '../../utils/dateUtils';
+/** @format */
+
+import { useAppDispatch, useAppSelector } from "../../hooks"
+import {
+  navigate,
+  openImportExport,
+  setViewMode,
+  toggleSidebar
+} from "../../store/uiSlice"
+import { formatMonthYear } from "../../utils/dateUtils"
 
 function ChevronLeft() {
   return (
@@ -14,7 +21,7 @@ function ChevronLeft() {
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
     </svg>
-  );
+  )
 }
 
 function ChevronRight() {
@@ -29,7 +36,7 @@ function ChevronRight() {
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
     </svg>
-  );
+  )
 }
 
 function MenuIcon() {
@@ -42,48 +49,55 @@ function MenuIcon() {
       strokeWidth={2}
       className="h-5 w-5"
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
     </svg>
-  );
+  )
 }
 
 export default function Header() {
-  const dispatch = useAppDispatch();
-  const { viewMode, currentYear, currentMonth } = useAppSelector((state) => state.ui);
+  const dispatch = useAppDispatch()
+  const { viewMode, currentYear, currentMonth } = useAppSelector(
+    state => state.ui
+  )
 
   function goBack() {
-    if (viewMode === 'year') {
-      dispatch(navigate({ year: currentYear - 1, month: currentMonth }));
-      return;
+    if (viewMode === "year") {
+      dispatch(navigate({ year: currentYear - 1, month: currentMonth }))
+      return
     }
 
-    let month = currentMonth - 1;
-    let year = currentYear;
+    let month = currentMonth - 1
+    let year = currentYear
     if (month < 0) {
-      month = 11;
-      year -= 1;
+      month = 11
+      year -= 1
     }
-    dispatch(navigate({ year, month }));
+    dispatch(navigate({ year, month }))
   }
 
   function goForward() {
-    if (viewMode === 'year') {
-      dispatch(navigate({ year: currentYear + 1, month: currentMonth }));
-      return;
+    if (viewMode === "year") {
+      dispatch(navigate({ year: currentYear + 1, month: currentMonth }))
+      return
     }
 
-    let month = currentMonth + 1;
-    let year = currentYear;
+    let month = currentMonth + 1
+    let year = currentYear
     if (month > 11) {
-      month = 0;
-      year += 1;
+      month = 0
+      year += 1
     }
-    dispatch(navigate({ year, month }));
+    dispatch(navigate({ year, month }))
   }
 
-  const title = viewMode === 'year'
-    ? String(currentYear)
-    : formatMonthYear(currentYear, currentMonth);
+  const title =
+    viewMode === "year"
+      ? String(currentYear)
+      : formatMonthYear(currentYear, currentMonth)
 
   return (
     <header className="flex flex-col gap-2 border-b border-slate-200 bg-white px-3 py-2 shadow-sm md:flex-row md:items-center md:justify-between md:gap-4 md:px-6 md:py-3">
@@ -97,12 +111,16 @@ export default function Header() {
           >
             <MenuIcon />
           </button>
-          <span className="text-xl md:text-2xl" aria-hidden="true">🦷</span>
+          <span className="text-xl md:text-2xl" aria-hidden="true">
+            🦷
+          </span>
           <div>
             <h1 className="text-sm font-bold leading-tight text-slate-800 md:text-lg">
-              Paediatric Dentistry
+              FPaed Program 2026
             </h1>
-            <p className="hidden text-xs text-slate-500 sm:block">Sep 2026 – Sep 2028</p>
+            <p className="hidden text-xs text-slate-500 sm:block">
+              Sep 2026 – Sep 2028
+            </p>
           </div>
         </div>
 
@@ -132,21 +150,21 @@ export default function Header() {
       <div className="flex items-center justify-between gap-2 md:justify-end">
         <div className="flex overflow-hidden rounded-lg border border-slate-200 text-xs md:text-sm">
           <button
-            onClick={() => dispatch(setViewMode('month'))}
+            onClick={() => dispatch(setViewMode("month"))}
             className={`px-2.5 py-1 font-medium transition-colors md:px-3 md:py-1.5 ${
-              viewMode === 'month'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-slate-600 hover:bg-slate-50'
+              viewMode === "month"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-slate-600 hover:bg-slate-50"
             }`}
           >
             Month
           </button>
           <button
-            onClick={() => dispatch(setViewMode('year'))}
+            onClick={() => dispatch(setViewMode("year"))}
             className={`border-l border-slate-200 px-2.5 py-1 font-medium transition-colors md:px-3 md:py-1.5 ${
-              viewMode === 'year'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-slate-600 hover:bg-slate-50'
+              viewMode === "year"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-slate-600 hover:bg-slate-50"
             }`}
           >
             Year
@@ -196,5 +214,5 @@ export default function Header() {
         </button>
       </div>
     </header>
-  );
+  )
 }

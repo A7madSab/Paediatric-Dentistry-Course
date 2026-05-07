@@ -1,8 +1,10 @@
-import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
-import CalendarView from './components/Calendar/CalendarView';
-import SessionModal from './components/Modal/SessionModal';
-import ImportExportPanel from './components/ImportExport/ImportExportPanel';
+/** @format */
+
+import Header from "./components/Header/Header"
+import Sidebar from "./components/Sidebar/Sidebar"
+import CalendarView from "./components/Calendar/CalendarView"
+import SessionModal from "./components/Modal/SessionModal"
+import ImportExportPanel from "./components/ImportExport/ImportExportPanel"
 
 export default function App() {
   return (
@@ -17,5 +19,5 @@ export default function App() {
       <SessionModal />
       <ImportExportPanel />
     </div>
-  );
+  )
 }
