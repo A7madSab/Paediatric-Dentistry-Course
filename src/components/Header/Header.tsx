@@ -154,7 +154,7 @@ export default function Header() {
       </div>
 
       {/* Bottom row on mobile: nav controls */}
-      <div className="flex items-center justify-between gap-2 md:justify-end">
+      <div className="flex flex-wrap items-center justify-between gap-2 md:flex-nowrap md:justify-end">
         <div className="flex overflow-hidden rounded-lg border border-slate-200 text-xs md:text-sm">
           <button
             onClick={() => dispatch(setPage("calendar"))}
@@ -208,20 +208,20 @@ export default function Header() {
           Today
         </button>
 
-        <div className="flex items-center gap-0.5 rounded-lg bg-slate-100 p-0.5 md:gap-1 md:p-1">
+        <div className="flex w-full items-center justify-center gap-0.5 rounded-lg bg-slate-100 p-0.5 md:w-auto md:gap-1 md:p-1">
           <button
             onClick={goBack}
-            className="rounded-md p-1 text-slate-600 transition-all hover:bg-white hover:shadow-sm md:p-1.5"
+            className="rounded-md p-1.5 text-slate-600 transition-all hover:bg-white hover:shadow-sm md:p-1.5"
             aria-label="Previous"
           >
             <ChevronLeft />
           </button>
-          <span className="min-w-[100px] px-1.5 py-0.5 text-center text-xs font-semibold text-slate-800 md:min-w-[160px] md:px-3 md:py-1 md:text-sm">
+          <span className="min-w-[120px] px-1.5 py-0.5 text-center text-xs font-semibold text-slate-800 md:min-w-[160px] md:px-3 md:py-1 md:text-sm">
             {title}
           </span>
           <button
             onClick={goForward}
-            className="rounded-md p-1 text-slate-600 transition-all hover:bg-white hover:shadow-sm md:p-1.5"
+            className="rounded-md p-1.5 text-slate-600 transition-all hover:bg-white hover:shadow-sm md:p-1.5"
             aria-label="Next"
           >
             <ChevronRight />
