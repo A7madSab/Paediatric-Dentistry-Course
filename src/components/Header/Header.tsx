@@ -94,6 +94,12 @@ export default function Header() {
     dispatch(navigate({ year, month }))
   }
 
+  function goToday() {
+    const now = new Date()
+    dispatch(navigate({ year: now.getFullYear(), month: now.getMonth() }))
+    dispatch(setViewMode("month"))
+  }
+
   const title =
     viewMode === "year"
       ? String(currentYear)
@@ -170,6 +176,13 @@ export default function Header() {
             Year
           </button>
         </div>
+
+        <button
+          onClick={goToday}
+          className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-medium text-slate-700 transition-colors hover:bg-slate-50 md:px-3 md:py-1.5 md:text-sm"
+        >
+          Today
+        </button>
 
         <div className="flex items-center gap-0.5 rounded-lg bg-slate-100 p-0.5 md:gap-1 md:p-1">
           <button

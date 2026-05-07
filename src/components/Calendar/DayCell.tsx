@@ -48,21 +48,16 @@ export default function DayCell({ date, isCurrentMonth }: Props) {
       >
         {date.getDate()}
       </span>
-      <div className="hidden flex-col gap-0.5 overflow-hidden sm:flex">
-        {sessions.slice(0, 3).map(session => (
+      <div className="flex flex-col gap-0.5 overflow-hidden">
+        {sessions.slice(0, 2).map(session => (
           <SessionChip key={session.id} session={session} />
         ))}
-        {sessions.length > 3 && (
+        {sessions.length > 2 && (
           <span className="pl-1 text-[9px] text-slate-400">
-            +{sessions.length - 3} more
+            +{sessions.length - 2} more
           </span>
         )}
       </div>
-      {sessions.length > 0 && (
-        <div className="flex gap-0.5 sm:hidden">
-          <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-        </div>
-      )}
     </div>
   )
 }
